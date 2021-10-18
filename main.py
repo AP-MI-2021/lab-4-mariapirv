@@ -89,6 +89,19 @@ def test_ListacuNumeresiDivizoriProprii():
     assert ListacuNumeresiDivizoriProprii([1]) == [1,0]
     assert ListacuNumeresiDivizoriProprii ([4,7,0]) == [4,1,7,0,0,0]
 
+def cateAparitiiNr(lst,nr):
+    '''
+    determina de cate ori apare numar nr in lista
+    :param lst: lista de nr intregi
+    :param nr: nr intreg caruia se calculeaza aparitiile in lista
+    :return: de cate ori apare un numar in lista
+    '''
+    de_cate_ori = 0
+    for x in lst:
+        if x == nr:
+            de_cate_ori = de_cate_ori + 1
+    return de_cate_ori
+
 def main ():
     test_Eliminare_nrPrime()
     test_MediaAritmetica_mai_mare_ca_nr()
@@ -99,6 +112,7 @@ def main ():
         print ("2. Afisarea listei dupa eliminarea numerelor prime din lista")
         print ("3. Să se afișeze dacă media aritmetică a numerelor este mai mare decât un număr n dat.")
         print ("4. Afișarea listei obținută prin adăugarea după fiecare element numărul de divizori proprii ai elementului.")
+        #print ("5. Afișarea listei obținute din lista inițială în care numerele sunt înlocuite cu un tuplu în care pe prima poziție este numărul, pe a doua poziție va fi indexul elementului din listă, iar pe a treia poziție apare numărul de apariții a numărului.")
         optiune = input("Dati optiunea: ")
         if optiune == "1":
             lst = CitireLista()
@@ -112,6 +126,7 @@ def main ():
                 print ("Nu")
         elif optiune == "4":
                 print (ListacuNumeresiDivizoriProprii(lst))
+        #elif optiune == "5"
         elif optiune == "x":
             break
         else:
