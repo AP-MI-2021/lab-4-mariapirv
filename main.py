@@ -57,25 +57,61 @@ def test_MediaAritmetica_mai_mare_ca_nr():
     assert MediaAritmetica_mai_mare_ca_nr([10, -3, 25, -1, 3, 25, 18],10) is True
     assert MediaAritmetica_mai_mare_ca_nr([1,2,3,10],20) is False
 
+def cati_div_proprii(n):
+    '''
+    calculeaza numarul de divizori proprii a unui numar
+    :param n: numar intreg
+    :return: numarul de divizori proprii a numarului
+    '''
+    if n < 0:
+        return 0
+    else:
+        catiDiv = 0
+        for div in range(2,n):
+            if n % div == 0:
+                catiDiv = catiDiv + 1
+        return catiDiv
+
+def ListacuNumeresiDivizoriProprii (lst):
+    '''
+    creeaza o noua lista, adaugand dupa fiecare numar din lista initiala, numarul de divizori proprii ai sai
+    :param lst: lista de nr intregi
+    :return: lista noua in care fiecare numar din lista initiala este urmat de numar sau de divizori proprii
+    '''
+    new_lst = []
+    for x in lst:
+        new_lst.append(x)
+        new_lst.append(cati_div_proprii(x))
+    return new_lst
+
+def test_ListacuNumeresiDivizoriProprii():
+    assert ListacuNumeresiDivizoriProprii([19,5,24,12,9]) == [19,0,5,0,24,6,12,4,9,1]
+    assert ListacuNumeresiDivizoriProprii([1]) == [1,0]
+    assert ListacuNumeresiDivizoriProprii ([4,7,0]) == [4,1,7,0,0,0]
+
 def main ():
     test_Eliminare_nrPrime()
     test_MediaAritmetica_mai_mare_ca_nr()
+    test_ListacuNumeresiDivizoriProprii()
     lst = []
     while True:
         print("1. Citire lista")
         print ("2. Afisarea listei dupa eliminarea numerelor prime din lista")
         print ("3. Să se afișeze dacă media aritmetică a numerelor este mai mare decât un număr n dat.")
+        print ("4. Afișarea listei obținută prin adăugarea după fiecare element numărul de divizori proprii ai elementului.")
         optiune = input("Dati optiunea: ")
         if optiune == "1":
             lst = CitireLista()
         elif optiune == "2":
             print (Eliminare_nrPrime(lst))
-        elif optiune =="3":
+        elif optiune == "3":
             n = int(input("Dati un numar cu care se va compara media aritmetica: "))
             if MediaAritmetica_mai_mare_ca_nr(lst,n):
                 print ("Da")
             else:
                 print ("Nu")
+        elif optiune == "4":
+                print (ListacuNumeresiDivizoriProprii(lst))
         elif optiune == "x":
             break
         else:
